@@ -1,0 +1,31 @@
+EtraSanitize
+============================================================================================================================================
+
+This plugin provides the ability to put an extra layer of sanitization for you database columns - if you are already using xss_terminate. 
+
+
+Example
+============================================================================================================================================
+class Book < ActiveRecord::Base
+  extra_sanitize :columns => :title
+end
+
+OR
+
+class Article < ActiveRecord::Base
+  extra_sanitize :columns => [:title, :body], :except => [:body]
+end
+
+OR
+
+class Post < ActiveRecord::Base
+  extra_sanitize :columns => :all
+end
+
+OR
+
+class Tag < ActiveRecord::Base
+  extra_sanitize :columns => :all, :reg_exp => /[~?¿]/  #you can replace the default regular expression
+end
+
+Copyright (c) 2009 (Amit Kumar), released under the MIT license
